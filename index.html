@@ -1,0 +1,150 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=ABeeZee:400,400italic' rel='stylesheet' type='text/css'>
+
+    <style type="text/css">
+        .source {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50%;
+            bottom: 0;
+            border: none;
+            background-color: #333;
+            color: #cdd950;
+            padding: 10px;
+            margin: 0;
+            border-right: 2px solid #ff6100;
+            font-size: 20px;
+            overflow-y: auto;
+            font-family: "Ubuntu Mono", monospace;
+            resize: none;
+        }
+
+        .target {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        .target {
+            font-family: 'ABeeZee', sans-serif;
+            color: #cdd950;
+            background-color: #333;
+            font-size: 20px;
+        }
+
+        .target h1, h2, h3 {
+            padding: 0;
+            margin: 0;
+        }
+
+        .target h1 {
+            font-size: 30px;
+        }
+
+        .target h2 {
+            font-size: 26px;
+        }
+
+        .target h3 {
+            font-size: 22px;
+        }
+
+        .target pre {
+            border: 2px solid #ff6000;
+            padding: 10px;
+            padding-left: 30px;
+            margin: 0;
+            background-color: #555;
+            font-family: "Ubuntu Mono", monospace;
+        }
+
+        .target code {
+            font-family: "Ubuntu Mono", monospace;
+        }
+
+        .target a {
+            color: #e9ff34;
+        }
+
+        .target a:hover {
+            color: #ff6100;
+        }
+        ::-webkit-scrollbar {
+            width: 15px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #333;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #444;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea class="source" spellcheck="false">
+# header 1
+## header 2
+### header 3
+
+Hello there!!!
+
+Hi again
+
+    #include &lt;iostream&gt;
+
+    int main() {
+      std::cout &lt;&lt; "hello world!" &lt;&lt; std::endl;
+    }
+
+* Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here.
+* Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here.
+* Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here.
+* Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here.
+
+1. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here.
+2. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here.
+3. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here.
+4. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here. Item 1 goes here.
+
+**hi** `monotext` *again* _fuck_
+
+Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+&gt; The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+
+The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+
+http://www.google.com
+    </textarea>
+
+    <div class="target">
+    </div>
+
+    <script type="text/javascript">
+        $(function() {
+            var converter = new Markdown.Converter();
+            $(".source").keyup(function(x) {
+                var html = converter.makeHtml($(".source").val());
+                $(".target").html(html);
+            });
+            $(".source").keyup();
+        });
+    </script>
+
+</body>
+
+</html>
