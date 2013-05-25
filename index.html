@@ -2,31 +2,20 @@
 
 <head>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.js"></script>
+    <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=ABeeZee:400,400italic' rel='stylesheet' type='text/css'>
-
     <style type="text/css">
-        .source {
+        #source {
             position: absolute;
             left: 0;
             top: 0;
             width: 50%;
             bottom: 0;
             border: none;
-            background-color: #333;
-            color: #cdd950;
-            padding: 10px;
-            margin: 0;
-            border-right: 2px solid #ff6100;
-            font-size: 20px;
-            overflow-y: auto;
-            font-family: "Ubuntu Mono", monospace;
-            resize: none;
         }
 
-        .target {
+        #target {
             position: absolute;
             left: 50%;
             top: 0;
@@ -35,68 +24,11 @@
             padding: 10px;
             overflow-y: auto;
         }
-
-        .target {
-            font-family: 'ABeeZee', sans-serif;
-            color: #cdd950;
-            background-color: #333;
-            font-size: 20px;
-        }
-
-        .target h1, h2, h3 {
-            padding: 0;
-            margin: 0;
-        }
-
-        .target h1 {
-            font-size: 30px;
-        }
-
-        .target h2 {
-            font-size: 26px;
-        }
-
-        .target h3 {
-            font-size: 22px;
-        }
-
-        .target pre {
-            border: 2px solid #ff6000;
-            padding: 10px;
-            padding-left: 30px;
-            margin: 0;
-            background-color: #555;
-            font-family: "Ubuntu Mono", monospace;
-        }
-
-        .target code {
-            font-family: "Ubuntu Mono", monospace;
-        }
-
-        .target a {
-            color: #e9ff34;
-        }
-
-        .target a:hover {
-            color: #ff6100;
-        }
-        ::-webkit-scrollbar {
-            width: 15px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background-color: #333;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background-color: #444;
-        }
     </style>
 </head>
 
 <body>
-    <textarea class="source" spellcheck="false">
-# header 1
+    <div id="source"># header 1
 ## header 2
 ### header 3
 
@@ -129,19 +61,27 @@ Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots 
 The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
 
 http://www.google.com
-    </textarea>
+    </div>
 
-    <div class="target">
+    <div id="target">
     </div>
 
     <script type="text/javascript">
         $(function() {
-            var converter = new Markdown.Converter();
-            $(".source").keyup(function(x) {
-                var html = converter.makeHtml($(".source").val());
-                $(".target").html(html);
-            });
-            $(".source").keyup();
+          var editor = ace.edit("source");
+          editor.setFontSize("16px");
+          editor.setTheme("ace/theme/chrome");
+          editor.setShowPrintMargin(false);
+          editor.getSession().setMode("ace/mode/markdown");
+          editor.getSession().setUseWrapMode(true);
+
+          var converter = new Markdown.Converter();
+          var onchange = function() {
+            var html = converter.makeHtml(editor.getValue());
+            $("#target").html(html);
+          };
+          editor.getSession().on("change", onchange);
+          onchange();
         });
     </script>
 
